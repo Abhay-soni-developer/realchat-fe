@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { AppTheme } from 'themes'
+import { ThemeProvider } from '@material-ui/styles'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import UserPage from './routes/user'
+import AuthPage from './routes/auth';
+// import { AnimatedSwitch } from 'react-router-transition';
 
-function App() {
+
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={AppTheme}>
+      <Switch>
+        <Route path='/auth' component={AuthPage} />
+        <Route exact path='/user/chat-screen' component={UserPage} />
+        <Redirect to='/auth/sign-in'/>
+      </Switch>
+    </ThemeProvider >
   );
 }
 
 export default App;
+
