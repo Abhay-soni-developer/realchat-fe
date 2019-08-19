@@ -22,9 +22,25 @@ const style = theme => createStyles({
         justifyContent: 'space-between'
     },
 
+    iconButton: {
+        marginRight: '5px'
+    },
+
     icon: {
         fontSize: '1.8rem',
-        marginLeft: '20px'
+        color: 'white'
+    },
+
+    friendNameContainer: {
+        width: '400px',
+
+        '@media(max-width: 1200px)': {
+            width: '300px'
+        },
+
+        '@media(max-width: 992px)': {
+            width: '200px'
+        }
     }
 })
 

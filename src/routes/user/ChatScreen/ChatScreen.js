@@ -10,7 +10,7 @@ class ChatScreen extends React.Component {
     render() {
         const { classes} = this.props
         return (
-            <Paper className={{root: classes.container}} >
+            <Paper className={{root: classes.container}} square>
                 <ChatScreenBar/>
             </Paper>
         )

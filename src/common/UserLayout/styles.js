@@ -23,7 +23,13 @@ const style = theme => createStyles({
         maxHeight: 'calc(100% - 40px)',
         height: '100%',
         backgroundImage: theme.userAccountTheme.chatScreenBg,
-        backgroundSize: 'contain'
+        backgroundSize: 'contain',
+        '@media(max-width: 992px)': {
+            maxHeight: '100vh',
+            maxWidth: '100vw',
+            margin: '0px',
+            width: '100%'
+        }
     }
 
 })
