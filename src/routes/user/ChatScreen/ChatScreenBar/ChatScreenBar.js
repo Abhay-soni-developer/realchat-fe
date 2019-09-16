@@ -6,10 +6,17 @@ import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar'
 import defaultProfileImg from 'assets/images/defaultProfileImage.png'
 import Icon from '@material-ui/core/Icon'
+import PubSub from 'utils/EventBus'
 
 
 function ChatScreenBar(props) {
     const { classes } = props
+
+    const action = () => {
+        console.log('hello');
+        PubSub.notify('snackNotification', { message: 'Hello World' })
+    }
+
     return (
         <AppBar position='static' elevation={0} square={true}
             classes={{
@@ -25,7 +32,7 @@ function ChatScreenBar(props) {
                         </IconButton>
                     }
                     <div>
-                        <Typography variant='body2' noWrap classes={{root: classes.friendNameContainer}}>{props.friendName}</Typography>
+                        <Typography variant='body2' noWrap classes={{ root: classes.friendNameContainer }}>{props.friendName}</Typography>
                         <Typography variant='caption'>{props.friendStatus}</Typography>
                     </div>
                 </div>

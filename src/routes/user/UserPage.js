@@ -1,7 +1,7 @@
 import React from 'react'
 import { withStyles } from '@material-ui/styles'
 import style from './style'
-import UserLayout from 'common/UserLayout'
+import UserLayout from 'common/components/UserLayout'
 import ChatScreen from './ChatScreen';
 
 

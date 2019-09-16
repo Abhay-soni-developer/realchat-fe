@@ -1,10 +1,11 @@
 import React, { lazy, Suspense } from 'react'
 import Container from '@material-ui/core/Container'
-import { Navbar } from 'common/Navbar'
+import { Navbar } from 'common/components/Navbar'
 import { Switch, Route } from 'react-router-dom'
-import CustomCircularProgress from 'common/CustomCircularProgress'
+import CustomCircularProgress from 'common/components/Animation/CustomCircularProgress'
 import { withStyles } from '@material-ui/styles'
 import style from './style'
+
 
 const SignIn = lazy(() => import('./Components/SignIn'))
 const SignUp = lazy(() => import('./Components/SignUp'))
@@ -27,6 +28,7 @@ function AuthPage() {
           </Switch>
         </Suspense>
       </div>
+      
     </Container>
   )
 }
