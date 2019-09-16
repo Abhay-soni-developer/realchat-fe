@@ -7,6 +7,7 @@ const AppTheme = createMuiTheme({
         secondaryColor: '#ff3366',
         primaryBorderColor: '#e9ddd0',
         onHoverBorderColor: '#ff3366',
+        secondaryTextColor: 'rgba(0, 0, 0, 0.54)',
         errorColor: '#f44336',
         bgColor1: '#ff8133',
         bgColor2: '#66ff33',

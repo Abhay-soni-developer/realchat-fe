@@ -1,5 +1,5 @@
 import React from 'react'
-import './Fade.css'
+import './Fade.module.css'
 import { CSSTransition } from 'react-transition-group';
 
 

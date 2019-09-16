@@ -1,6 +1,29 @@
 import React from 'react'
-import { withStyles, Typography } from '@material-ui/core'
-import styles from './style'
+import withStyles from '@material-ui/core/styles/withStyles'
+import createStyles from '@material-ui/core/styles/createStyles'
+import Typography from '@material-ui/core/Typography'
+
+
+const styles = theme=>createStyles({
+    title: {
+        fontSize: '42px',
+        textTransform: 'uppercase',
+        fontWeight: 700,
+        marginBottom: '10px'
+    },
+    underline: {
+        width: '20%',
+        height: '4px',
+        margin: 'auto',
+        backgroundColor: theme.colors.secondaryColor,
+        marginBottom: '10px'
+    },
+    subheader: {
+        fontSize: '14px',
+        fontWeight: 400,
+        color: theme.colors.secondaryTextColor
+    }    
+})
 
 function CustomCardHeader( props) {
     const {classes}=props
@@ -26,6 +49,4 @@ CustomCardHeader.defaultProps = {
 }
 
 
-
-
-export default withStyles( styles)(CustomCardHeader)
+export default withStyles(styles)(CustomCardHeader)

@@ -1,13 +1,15 @@
 import React from 'react'
-import { Typography, Link, Button } from '@material-ui/core'
-import { withStyles } from '@material-ui/styles'
+import Link from '@material-ui/core/Link'
+import Button from '@material-ui/core/Button'
+import withStyles from '@material-ui/styles/withStyles'
+import Typography from '@material-ui/core/Typography'
 import styles from './styles'
 import { Link as RouterLink } from 'react-router-dom'
-import CustomTextField from 'common/CustomTextField'
-import CustomCard from 'common/CustomCard'
-import CustomCardHeader from 'common/CustomCardHeader'
+import CustomTextField from 'common/components/CustomTextField'
+import { CustomCard, CustomCardHeader } from 'common/components/CustomCard'
 import * as yup from 'yup'
 import { Formik } from 'formik';
+
 
 const signUpValidationSchema = yup.object().shape({
     fname: yup
@@ -48,70 +50,74 @@ class SignUp extends React.Component {
                             }}
 
                             render={props => {
+
+                                function setValueOfField(fieldName, value, shouldValidate = true) {
+                                    props.setFieldValue(fieldName, value, shouldValidate)
+                                }
+
                                 return (
                                     <form noValidate>
 
                                         <div style={{ display: 'flex' }}>
                                             <CustomTextField
-                                                name='fname'
-                                                required
-                                                label='First Name'
-                                                onChange={
-                                                    (e) => props.handleChange(e)
-                                                }
-                                                InputProps={{
-                                                    onBlur: (e) => {
-                                                        props.handleBlur(e)
-                                                    }
+                                                textFieldProps={{
+                                                    name: 'fname',
+                                                    required: true,
+                                                    error: Boolean(props.errors.fname && props.touched.fname),
+                                                    helperText: Boolean(props.errors.fname && props.touched.fname) && props.errors.fname
                                                 }}
-                                                error={Boolean(props.errors.fname && props.touched.fname)}
-                                                helperText={Boolean(props.errors.fname && props.touched.fname) && props.errors.fname}
+
+                                                label='First Name'
+                                                getValue={setValueOfField}
+                                                InputProps={{
+                                                    onBlur: props.handleBlur
+                                                }}
+
                                             />
                                             <div style={{ width: '20px' }}></div>
                                             <CustomTextField
-                                                name='lname'
-                                                label='Last Name'
-                                                onChange={
-                                                    (e) => props.handleChange(e)
-                                                }
-                                                inputProps={{
-                                                    onBlur: (e) => {
-                                                        props.handleBlur(e)
-                                                    }
+                                                textFieldProps={{
+                                                    name: 'lname',
+                                                    error: Boolean(props.errors.lname && props.touched.lname),
+                                                    helperText: Boolean(props.errors.lname && props.touched.lname) && props.errors.lname
                                                 }}
-                                                error={Boolean(props.errors.lname && props.touched.lname)}
-                                                helperText={Boolean(props.errors.lname && props.touched.lname) && props.errors.lname}
+
+                                                label='Last Name'
+                                                getValue={setValueOfField}
+                                                InputProps={{
+                                                    onBlur: props.handleBlur
+                                                }}
+
                                             />
                                         </div>
 
-                                        <CustomTextField name='email'
-                                            required
+                                        <CustomTextField
+                                            textFieldProps={{
+                                                name: 'email',
+                                                required: true,
+                                                error: Boolean(props.errors.email && props.touched.email),
+                                                helperText: Boolean(props.errors.email && props.touched.email) && props.errors.email
+                                            }}
+
                                             label='Email'
-                                            error={Boolean(props.errors.email && props.touched.email)}
-                                            helperText={Boolean(props.errors.email && props.touched.email) && props.errors.email}
-                                            onChange={
-                                                (e) => props.handleChange(e)
-                                            }
+
+                                            getValue={setValueOfField}
                                             InputProps={{
-                                                onBlur: (e) => {
-                                                    props.handleBlur(e)
-                                                }
+                                                onBlur: props.handleBlur
                                             }}
                                         />
 
                                         <CustomTextField
-                                            name='password'
-                                            required
+                                            textFieldProps={{
+                                                name: 'password',
+                                                required: true,
+                                                error: Boolean(props.touched.password && props.errors.password),
+                                                helperText: Boolean(props.touched.password && props.errors.password) && props.errors.password,
+                                            }}
                                             label='Password'
-                                            error={Boolean(props.touched.password && props.errors.password)}
-                                            helperText={Boolean(props.touched.password && props.errors.password) && props.errors.password}
-                                            onChange={
-                                                (e) => props.handleChange(e)
-                                            }
+                                            getValue={setValueOfField}
                                             InputProps={{
-                                                onBlur: (e) => {
-                                                    props.handleBlur(e)
-                                                }
+                                                onBlur: props.handleBlur
                                             }}
                                         />
 
@@ -121,14 +127,6 @@ class SignUp extends React.Component {
                                             type='submit'
                                             classes={{
                                                 root: this.props.classes.btnStyle
-                                            }}
-                                            onChange={
-                                                (e) => props.handleChange(e)
-                                            }
-                                            InputProps={{
-                                                onBlur: (e) => {
-                                                    props.handleBlur(e)
-                                                }
                                             }}
                                         >
                                             {'SIGN UP'}
@@ -142,6 +140,7 @@ class SignUp extends React.Component {
                             <Link component={RouterLink} underline='always' color='inherit' to='/forgot-password'>Forgot password?</Link>
                         </Typography>
                     </div>
+                    
                 </React.Fragment>
             </CustomCard>
         )
