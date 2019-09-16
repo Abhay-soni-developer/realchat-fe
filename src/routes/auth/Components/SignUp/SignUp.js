@@ -9,6 +9,7 @@ import CustomTextField from 'common/components/CustomTextField'
 import { CustomCard, CustomCardHeader } from 'common/components/CustomCard'
 import * as yup from 'yup'
 import { Formik } from 'formik';
+import Step1 from './Step1'
 
 
 const signUpValidationSchema = yup.object().shape({
@@ -31,6 +32,11 @@ const signUpValidationSchema = yup.object().shape({
 
 
 class SignUp extends React.Component {
+
+    state = {
+        numberOfSteps: 3,
+        currentStep: 0
+    }
 
     render() {
         return (
@@ -58,79 +64,33 @@ class SignUp extends React.Component {
                                 return (
                                     <form noValidate>
 
-                                        <div style={{ display: 'flex' }}>
-                                            <CustomTextField
-                                                textFieldProps={{
-                                                    name: 'fname',
-                                                    required: true,
-                                                    error: Boolean(props.errors.fname && props.touched.fname),
-                                                    helperText: Boolean(props.errors.fname && props.touched.fname) && props.errors.fname
-                                                }}
+                                        <Step1 setValueOfField={setValueOfField} {...props}/>
 
-                                                label='First Name'
-                                                getValue={setValueOfField}
-                                                InputProps={{
-                                                    onBlur: props.handleBlur
-                                                }}
-
-                                            />
-                                            <div style={{ width: '20px' }}></div>
-                                            <CustomTextField
-                                                textFieldProps={{
-                                                    name: 'lname',
-                                                    error: Boolean(props.errors.lname && props.touched.lname),
-                                                    helperText: Boolean(props.errors.lname && props.touched.lname) && props.errors.lname
-                                                }}
-
-                                                label='Last Name'
-                                                getValue={setValueOfField}
-                                                InputProps={{
-                                                    onBlur: props.handleBlur
-                                                }}
-
-                                            />
+                                        <div className={this.props.classes.currentFrameCount}>
+                                            <div className={this.state.currentStep===0?'active':''}/>
+                                            <div className={this.state.currentStep===1?'active':''}/>
+                                            <div className={this.state.currentStep===2?'active':''}/>
                                         </div>
 
-                                        <CustomTextField
-                                            textFieldProps={{
-                                                name: 'email',
-                                                required: true,
-                                                error: Boolean(props.errors.email && props.touched.email),
-                                                helperText: Boolean(props.errors.email && props.touched.email) && props.errors.email
-                                            }}
+                                        <div className={this.props.classes.btnContainer}>
+                                            <Button
+                                                variant="contained"
+                                                classes={{
+                                                    root: this.props.classes.btnStyle
+                                                }}
+                                            >
+                                                {'PREVIOUS'}
+                                            </Button>
 
-                                            label='Email'
-
-                                            getValue={setValueOfField}
-                                            InputProps={{
-                                                onBlur: props.handleBlur
-                                            }}
-                                        />
-
-                                        <CustomTextField
-                                            textFieldProps={{
-                                                name: 'password',
-                                                required: true,
-                                                error: Boolean(props.touched.password && props.errors.password),
-                                                helperText: Boolean(props.touched.password && props.errors.password) && props.errors.password,
-                                            }}
-                                            label='Password'
-                                            getValue={setValueOfField}
-                                            InputProps={{
-                                                onBlur: props.handleBlur
-                                            }}
-                                        />
-
-                                        <Button
-                                            variant="contained"
-                                            fullWidth
-                                            type='submit'
-                                            classes={{
-                                                root: this.props.classes.btnStyle
-                                            }}
-                                        >
-                                            {'SIGN UP'}
-                                        </Button>
+                                            <Button
+                                                variant="contained"
+                                                classes={{
+                                                    root: this.props.classes.btnStyle
+                                                }}
+                                            >
+                                                {'NEXT'}
+                                            </Button>
+                                        </div>
                                     </form>
                                 )
                             }
@@ -140,7 +100,7 @@ class SignUp extends React.Component {
                             <Link component={RouterLink} underline='always' color='inherit' to='/forgot-password'>Forgot password?</Link>
                         </Typography>
                     </div>
-                    
+
                 </React.Fragment>
             </CustomCard>
         )

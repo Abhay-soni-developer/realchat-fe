@@ -28,6 +28,12 @@ const style = theme => createStyles({
     formContainer: {
         marginTop: '50px'
     },
+
+    btnContainer: {
+        display: 'flex',
+        justifyContent: 'space-between'
+    },
+
     btnStyle: {
         marginTop: '25px',
         borderRadius: '0px',
@@ -37,10 +43,33 @@ const style = theme => createStyles({
         height: '60px',
         fontWeight: 700,
         color: 'white',
+        flex: 1,
+        marginRight: 20,
         '&:hover': {
-            backgroundColor: '#e62958'
+            backgroundColor: `${theme.colors.btnPrimaryColor}`
+        },
+        '&:last-child': {
+            marginRight: 0
+        }
+    },
+
+    currentFrameCount: {
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: 20,
+        '&>div': {
+            height: 12,
+            width: 12,
+            borderRadius: '50%',
+            backgroundColor: '#fff',
+            border: `1px solid ${theme.colors.secondaryTextColor}`,
+            margin: '0px 5px'
+        },
+        '&>.active': {
+            backgroundColor: `${theme.colors.bgColor3}`
         }
     }
+
 })
 
 export default style

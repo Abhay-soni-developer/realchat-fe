@@ -11,7 +11,8 @@ const AppTheme = createMuiTheme({
         errorColor: '#f44336',
         bgColor1: '#ff8133',
         bgColor2: '#66ff33',
-        bgColor3: '#3399ff'
+        bgColor3: '#3399ff',
+        btnPrimaryColor: '#e62958'
     },
 
     navbar: {
