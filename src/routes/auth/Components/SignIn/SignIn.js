@@ -25,7 +25,7 @@ class SignIn extends React.Component {
     render() {
         return (
             <CustomCard>
-                <React.Fragment>
+                <div>
 
                     <CustomCardHeader title={'Sign In'} subheader={['Not a member yet? ', <Link component={RouterLink} to='/path' color='inherit'>{'Sign up here'}</Link>]} />
 
@@ -101,7 +101,7 @@ class SignIn extends React.Component {
                             <Link component={RouterLink} underline='always' color='inherit' to='/forgot-password'>Forgot password?</Link>
                         </Typography>
                     </div>
-                </React.Fragment>
+                </div>
             </CustomCard>
         )
     }
