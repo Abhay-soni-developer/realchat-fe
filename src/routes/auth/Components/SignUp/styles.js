@@ -1,4 +1,4 @@
-import { createStyles} from '@material-ui/core'
+import { createStyles } from '@material-ui/core'
 
 const style = theme => createStyles({
     title: {
@@ -63,11 +63,40 @@ const style = theme => createStyles({
             borderRadius: '50%',
             backgroundColor: '#fff',
             border: `1px solid ${theme.colors.secondaryTextColor}`,
-            margin: '0px 5px'
+            margin: '0px 5px',
+            transitionDuration: '0s'
         },
         '&>.active': {
-            backgroundColor: `${theme.colors.bgColor3}`
+            backgroundColor: `${theme.colors.bgColor3}`,
+            transform: 'rotateX(180deg)',
+            transitionDuration: '1s'
         }
+    },
+
+    dobFieldInput: {
+        backgroundColor: `${theme.fields.inputFieldBackgroundColor}`,
+        borderRadius: '0px',
+        border: theme.fields.border,
+        transitionDuration: '0.25s',
+        height: theme.fields.height,
+        '&:hover': {
+            border:  theme.fields.onHoverBorder,
+            backgroundColor: `${theme.fields.inputFieldBackgroundColor}`
+        }
+    },
+
+    genderSelectContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        marginTop: 20
+    },
+
+    genderRadioBtnContainer: {
+        justifyContent: 'space-around',
+        backgroundColor: `${theme.fields.inputFieldBackgroundColor}`,
+        border: theme.fields.border,
+        marginTop: 5,
+        height: theme.fields.height,
     }
 
 })

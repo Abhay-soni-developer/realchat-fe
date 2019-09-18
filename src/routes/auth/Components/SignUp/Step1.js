@@ -3,9 +3,9 @@ import styles from './styles'
 import withStyles from '@material-ui/core/styles/withStyles'
 import CustomTextField from 'common/components/CustomTextField'
 
-function Step1 (props) {
+function Step1(props) {
 
-    const {setValueOfField} = props
+    const { setValueOfField } = props
 
     return (
         <>

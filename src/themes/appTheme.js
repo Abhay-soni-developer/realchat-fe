@@ -12,7 +12,14 @@ const AppTheme = createMuiTheme({
         bgColor1: '#ff8133',
         bgColor2: '#66ff33',
         bgColor3: '#3399ff',
-        btnPrimaryColor: '#e62958'
+        btnPrimaryColor: '#e62958',
+    },
+
+    fields: {
+        height: '62px',
+        inputFieldBackgroundColor: '#fff',
+        border: `1px solid #e9ddd0`,
+        onHoverBorder: `1px solid #ff3366`
     },
 
     navbar: {

@@ -7,10 +7,10 @@ const style = theme => createStyles({
 
     inputField: {
         borderRadius: '0px',
-        border: `1px solid ${theme.colors.primaryBorderColor}`,
+        border: theme.fields.border,
         transitionDuration: '0.25s',
         '&:hover': {
-            borderColor: `${theme.colors.secondaryColor}`,
+            border:  `${theme.fields.onHoverBorder}`,
         },
         '&::after': {
             display: 'none'
@@ -21,7 +21,7 @@ const style = theme => createStyles({
     },
 
     inputStyle: {
-        backgroundColor: 'white',
+        backgroundColor: `${theme.fields.inputFieldBackgroundColor}`,
         padding: '20px',
         fontSize: '1.2rem',
     },
