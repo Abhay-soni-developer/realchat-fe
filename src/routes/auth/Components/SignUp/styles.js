@@ -53,26 +53,6 @@ const style = theme => createStyles({
         }
     },
 
-    currentFrameCount: {
-        display: 'flex',
-        justifyContent: 'center',
-        marginTop: 20,
-        '&>div': {
-            height: 12,
-            width: 12,
-            borderRadius: '50%',
-            backgroundColor: '#fff',
-            border: `1px solid ${theme.colors.secondaryTextColor}`,
-            margin: '0px 5px',
-            transitionDuration: '0s'
-        },
-        '&>.active': {
-            backgroundColor: `${theme.colors.bgColor3}`,
-            transform: 'rotateX(180deg)',
-            transitionDuration: '1s'
-        }
-    },
-
     dobFieldInput: {
         backgroundColor: `${theme.fields.inputFieldBackgroundColor}`,
         borderRadius: '0px',

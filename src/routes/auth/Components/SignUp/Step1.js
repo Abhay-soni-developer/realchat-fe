@@ -60,6 +60,7 @@ function Step1(props) {
 
             <CustomTextField
                 textFieldProps={{
+                    type: 'password',
                     name: 'password',
                     required: true,
                     error: Boolean(props.touched.password && props.errors.password),

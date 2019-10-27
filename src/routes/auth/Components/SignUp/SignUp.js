@@ -9,12 +9,13 @@ import CustomTextField from 'common/components/CustomTextField'
 import { CustomCard, CustomCardHeader } from 'common/components/CustomCard'
 import * as yup from 'yup'
 import { Formik } from 'formik'
-import StepCount from './StepCount'
+import Steppers from 'common/components/Steppers'
 import Step1 from './Step1'
 import Step2 from './Step2'
 
 
 const signUpValidationSchema = yup.object().shape({
+
     fname: yup
         .string()
         .required('first name is required'),
@@ -86,12 +87,14 @@ class SignUp extends React.Component {
                                 lname: undefined,
                                 email: undefined,
                                 password: undefined,
-                                dob: undefined,
+                                dob: new Date(),
                                 gender: undefined,
                                 countryCode: undefined,
                                 mobileNumber: undefined,
                                 newsletter: undefined
                             }}
+
+                            isInitialValid={true}
 
                             render={props => {
 
@@ -108,7 +111,7 @@ class SignUp extends React.Component {
                                         {this.state.currentStep === 1 && (<Step2 setValueOfField={setValueOfField} {...props} />)}
                                         {/* {this.state.stepCount===3 && (<Step3 setValueOfField={setValueOfField} {...props}/>)} */}
 
-                                        <StepCount currentStep={this.state.currentStep} numberOfSteps={this.state.numberOfSteps}/>
+                                        <Steppers currentStep={this.state.currentStep} numberOfSteps={this.state.numberOfSteps} />
 
                                         <div className={this.props.classes.btnContainer}>
                                             <Button
@@ -128,9 +131,32 @@ class SignUp extends React.Component {
                                                     root: this.props.classes.btnStyle
                                                 }}
                                                 onClick={() => { this.takeToStep(this.state.currentStep + 1) }}
-                                                disabled={this.state.currentStep === this.state.numberOfSteps - 1}
+                                                disabled={
+                                                    !props.isValid
+                                                    // ||
+                                                    // Boolean(Object.keys(props.errors).length !== 0)
+                                                    // Boolean(this.state.currentStep === this.state.numberOfSteps - 1)
+                                                }
+                                                style={{ display: !Boolean(this.state.currentStep === this.state.numberOfSteps - 1) ? 'block' : 'none' }}
+
                                             >
                                                 {'NEXT'}
+                                            </Button>
+
+                                            <Button
+                                                variant="contained"
+                                                classes={{
+                                                    root: this.props.classes.btnStyle
+                                                }}
+                                                onClick={() => { this.takeToStep(this.state.currentStep + 1) }}
+                                                disabled={
+                                                    !props.isValid || props.isSubmitting
+                                                    // ||
+                                                    // Boolean(Object.keys(props.errors).length !== 0)
+                                                }
+                                                style={{ display: Boolean(this.state.currentStep === this.state.numberOfSteps - 1) ? 'block' : 'none' }}
+                                            >
+                                                {'SUBMIT'}
                                             </Button>
                                         </div>
                                     </form>
