@@ -5,11 +5,11 @@ import withStyles from '@material-ui/styles/withStyles'
 import Typography from '@material-ui/core/Typography'
 import styles from './styles'
 import { Link as RouterLink } from 'react-router-dom'
-import CustomTextField from 'common/components/CustomTextField'
-import { CustomCard, CustomCardHeader } from 'common/components/CustomCard'
+import CustomTextField from 'components/CustomTextField'
+import { CustomCard, CustomCardHeader } from 'components/CustomCard'
 import * as yup from 'yup'
 import { Formik } from 'formik'
-import Steppers from 'common/components/Steppers'
+import Steppers from 'components/Steppers'
 import Step1 from './Step1'
 import Step2 from './Step2'
 
@@ -106,7 +106,6 @@ class SignUp extends React.Component {
 
                                 return (
                                     <form noValidate>
-
                                         {this.state.currentStep === 0 && (<Step1 setValueOfField={setValueOfField} {...props} />)}
                                         {this.state.currentStep === 1 && (<Step2 setValueOfField={setValueOfField} {...props} />)}
                                         {/* {this.state.stepCount===3 && (<Step3 setValueOfField={setValueOfField} {...props}/>)} */}

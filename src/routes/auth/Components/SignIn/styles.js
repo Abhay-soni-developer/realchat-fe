@@ -24,6 +24,10 @@ const style = theme => createStyles({
         '&:hover': {
             backgroundColor: '#e62958'
         }
+    },
+
+    googleBtn: {
+        backgroundColor: '#D6352E'
     }
 })
 

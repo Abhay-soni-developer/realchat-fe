@@ -1,8 +1,8 @@
 import React, { lazy, Suspense } from 'react'
 import Container from '@material-ui/core/Container'
-import { Navbar } from 'common/components/Navbar'
+import { Navbar } from 'components/Navbar'
 import { Switch, Route } from 'react-router-dom'
-import CustomCircularProgress from 'common/components/Animation/CustomCircularProgress'
+import CustomCircularProgress from 'components/Animation/CustomCircularProgress'
 import { withStyles } from '@material-ui/styles'
 import style from './style'
 

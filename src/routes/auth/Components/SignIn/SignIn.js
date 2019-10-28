@@ -5,10 +5,12 @@ import Button from '@material-ui/core/Button'
 import withStyles from '@material-ui/styles/withStyles'
 import styles from './styles'
 import { Link as RouterLink } from 'react-router-dom'
-import CustomTextField from 'common/components/CustomTextField'
-import { CustomCard, CustomCardHeader } from 'common/components/CustomCard'
+import CustomTextField from 'components/CustomTextField'
+import { CustomCard, CustomCardHeader } from 'components/CustomCard'
 import { Formik } from 'formik';
 import * as yup from 'yup'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 const loginValidationSchema = yup.object().shape({
     email: yup
@@ -93,6 +95,20 @@ class SignIn extends React.Component {
                                             }}
                                         >
                                             {'SIGN IN'}
+                                        </Button>
+
+                                        <Button
+                                            variant="contained"
+                                            fullWidth
+                                            classes={{
+                                                root: this.props.classes.btnStyle
+                                            }}
+                                            startIcon={
+                                                <SvgIcon component={(<FontAwesomeIcon icon={['fab', 'google']} size={'2x'}/>)}></SvgIcon>
+                                            }
+                                        >
+                                            <FontAwesomeIcon icon={['fab', 'google']} size={'2x'}/>
+                                            {'Login using Google'}
                                         </Button>
                                     </form>
                                 )

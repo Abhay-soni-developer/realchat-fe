@@ -3,10 +3,15 @@ import chatScreenBg from 'assets/images/bgImage.jpg'
 
 const AppTheme = createMuiTheme({
 
+    margin: {
+        secondary: 10
+    },
+
     colors: {
         secondaryColor: '#ff3366',
         primaryBorderColor: '#e9ddd0',
         onHoverBorderColor: '#ff3366',
+        primaryText: 'rgba(0, 0, 0, 0.87)',
         secondaryTextColor: 'rgba(0, 0, 0, 0.54)',
         errorColor: '#f44336',
         bgColor1: '#ff8133',

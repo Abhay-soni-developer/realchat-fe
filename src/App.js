@@ -4,7 +4,8 @@ import { ThemeProvider } from '@material-ui/styles'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import UserPage from './routes/user'
 import AuthPage from './routes/auth';
-import Snackbar from './common/components/Snackbar/Snackbar'
+import Snackbar from './components/Snackbar/Snackbar'
+import 'utils/fontAwesome'
 
 
 function App(props) {

@@ -77,7 +77,7 @@ const style = theme => createStyles({
         border: theme.fields.border,
         marginTop: 5,
         height: theme.fields.height,
-    }
+    },
 
 })
 
