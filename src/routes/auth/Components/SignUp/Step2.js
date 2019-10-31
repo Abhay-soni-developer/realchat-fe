@@ -9,6 +9,7 @@ import Radio from '@material-ui/core/Radio'
 import FormLabel from '@material-ui/core/FormLabel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Tooltip from '@material-ui/core/Tooltip'
+import Select from 'components/Select'
 
 const styles = theme => createStyles({
 
@@ -79,7 +80,8 @@ function Step2(props) {
     //mime types of accepted formats for profile photo
     const allowedFormats = ['image/png', 'image/jpeg']
 
-    const onImageSelect = () => {
+    const onImageSelect = (e) => {
+        e.preventDefault()
         let file = profilePhotoInput.current.files[0]
         let fileReader = new FileReader()
         fileReader.addEventListener('load', (e) => {
@@ -139,6 +141,9 @@ function Step2(props) {
                     <FormControlLabel value="other" control={<Radio />} label="Other" />
                 </RadioGroup>
             </div>
+
+            <div><Select/></div>
+
         </>
     )
 }
