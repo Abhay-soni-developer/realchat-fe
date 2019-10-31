@@ -12,6 +12,7 @@ const style = theme => createStyles({
     formContainer: {
         marginTop: '50px'
     },
+
     btnStyle: {
         marginTop: '25px',
         borderRadius: '0px',
@@ -27,7 +28,10 @@ const style = theme => createStyles({
     },
 
     googleBtn: {
-        backgroundColor: '#D6352E'
+        backgroundColor: '#D6352E',
+        '&:hover': {
+            backgroundColor: theme.colors.bgColor3
+        }
     }
 })
 

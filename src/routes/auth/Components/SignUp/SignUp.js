@@ -12,6 +12,7 @@ import { Formik } from 'formik'
 import Steppers from 'components/Steppers'
 import Step1 from './Step1'
 import Step2 from './Step2'
+import Step3 from './Step3'
 
 
 const signUpValidationSchema = yup.object().shape({
@@ -47,15 +48,14 @@ const signUpValidationSchema = yup.object().shape({
         .string(),
 
     mobileNumber: yup
-        .string(),
+        .string()
+        .matches(/([0-9])\w+/, 'Please Enter digits only'),
 
     country: yup
-        .string()
-        .required('Please select a country'),
+        .string('Please select a country'),
 
     state: yup
-        .string()
-        .required('Please select a state')
+        .string('Please select a state')
 
 })
 
@@ -86,6 +86,7 @@ class SignUp extends React.Component {
                                 fname: undefined,
                                 lname: undefined,
                                 email: undefined,
+                                profilePhoto: undefined,
                                 password: undefined,
                                 dob: new Date(),
                                 gender: undefined,
@@ -105,10 +106,10 @@ class SignUp extends React.Component {
                                 console.log(props)
 
                                 return (
-                                    <form noValidate>
+                                    <form noValidate encType="multipart/form-data">
                                         {this.state.currentStep === 0 && (<Step1 setValueOfField={setValueOfField} {...props} />)}
                                         {this.state.currentStep === 1 && (<Step2 setValueOfField={setValueOfField} {...props} />)}
-                                        {/* {this.state.stepCount===3 && (<Step3 setValueOfField={setValueOfField} {...props}/>)} */}
+                                        {this.state.currentStep === 3 && (<Step3 setValueOfField={setValueOfField} {...props}/>)}
 
                                         <Steppers currentStep={this.state.currentStep} numberOfSteps={this.state.numberOfSteps} />
 
@@ -124,7 +125,7 @@ class SignUp extends React.Component {
                                                 {'PREVIOUS'}
                                             </Button>
 
-                                            <Button
+                                            {!Boolean(this.state.currentStep === this.state.numberOfSteps - 1) && (<Button
                                                 variant="contained"
                                                 classes={{
                                                     root: this.props.classes.btnStyle
@@ -136,13 +137,11 @@ class SignUp extends React.Component {
                                                     // Boolean(Object.keys(props.errors).length !== 0)
                                                     // Boolean(this.state.currentStep === this.state.numberOfSteps - 1)
                                                 }
-                                                style={{ display: !Boolean(this.state.currentStep === this.state.numberOfSteps - 1) ? 'block' : 'none' }}
-
                                             >
                                                 {'NEXT'}
-                                            </Button>
+                                            </Button>)}
 
-                                            <Button
+                                            {Boolean(this.state.currentStep === this.state.numberOfSteps - 1) && (<Button
                                                 variant="contained"
                                                 classes={{
                                                     root: this.props.classes.btnStyle
@@ -153,10 +152,9 @@ class SignUp extends React.Component {
                                                     // ||
                                                     // Boolean(Object.keys(props.errors).length !== 0)
                                                 }
-                                                style={{ display: Boolean(this.state.currentStep === this.state.numberOfSteps - 1) ? 'block' : 'none' }}
                                             >
                                                 {'SUBMIT'}
-                                            </Button>
+                                            </Button>)}
                                         </div>
                                     </form>
                                 )

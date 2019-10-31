@@ -31,11 +31,21 @@ const style = theme => createStyles({
 
     btnContainer: {
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginTop: '25px',
+        '&>button': {
+            margin: '0px 10px 0px 25px'
+        },
+        '&>button:last-child': {
+            marginRight: '0px'
+        },
+        '&>button:first-child': {
+            marginLeft: '0px'
+        }
     },
 
     btnStyle: {
-        marginTop: '25px',
+        // marginTop: '25px',
         borderRadius: '0px',
         backgroundColor: theme.colors.secondaryColor,
         padding: '20px 5px',
@@ -47,36 +57,7 @@ const style = theme => createStyles({
         marginRight: 20,
         '&:hover': {
             backgroundColor: `${theme.colors.btnPrimaryColor}`
-        },
-        '&:last-child': {
-            marginRight: 0
         }
-    },
-
-    dobFieldInput: {
-        backgroundColor: `${theme.fields.inputFieldBackgroundColor}`,
-        borderRadius: '0px',
-        border: theme.fields.border,
-        transitionDuration: '0.25s',
-        height: theme.fields.height,
-        '&:hover': {
-            border:  theme.fields.onHoverBorder,
-            backgroundColor: `${theme.fields.inputFieldBackgroundColor}`
-        }
-    },
-
-    genderSelectContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        marginTop: 20
-    },
-
-    genderRadioBtnContainer: {
-        justifyContent: 'space-around',
-        backgroundColor: `${theme.fields.inputFieldBackgroundColor}`,
-        border: theme.fields.border,
-        marginTop: 5,
-        height: theme.fields.height,
     },
 
 })

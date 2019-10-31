@@ -4,6 +4,7 @@ import chatScreenBg from 'assets/images/bgImage.jpg'
 const AppTheme = createMuiTheme({
 
     margin: {
+        primary: 20,
         secondary: 10
     },
 

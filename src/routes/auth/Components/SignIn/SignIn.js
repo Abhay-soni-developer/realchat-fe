@@ -103,11 +103,9 @@ class SignIn extends React.Component {
                                             classes={{
                                                 root: this.props.classes.btnStyle
                                             }}
-                                            startIcon={
-                                                <SvgIcon component={(<FontAwesomeIcon icon={['fab', 'google']} size={'2x'}/>)}></SvgIcon>
-                                            }
+                                            startIcon={(<FontAwesomeIcon icon={['fab', 'google']} size={'2x'}/>)}
+                                            className={this.props.classes.googleBtn}
                                         >
-                                            <FontAwesomeIcon icon={['fab', 'google']} size={'2x'}/>
                                             {'Login using Google'}
                                         </Button>
                                     </form>
