@@ -15,8 +15,6 @@ const styles = theme => createStyles({
 
 })
 
-
-
 function Step3(props) {
 
     const { setValueOfField, classes } = props

@@ -55,7 +55,10 @@ const signUpValidationSchema = yup.object().shape({
         .string('Please select a country'),
 
     state: yup
-        .string('Please select a state')
+        .string('Please select a state'),
+    
+    city: yup
+        .string('please select a city')
 
 })
 
