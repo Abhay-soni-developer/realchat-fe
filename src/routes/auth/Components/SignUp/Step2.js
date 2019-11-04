@@ -1,80 +1,53 @@
-import React, { useRef } from 'react'
-import withStyles from '@material-ui/core/styles/withStyles'
-import createStyles from '@material-ui/core/styles/createStyles'
-import CustomTextField from 'components/CustomTextField'
-import DatePicker from 'components/DatePicker'
-import RadioGroup from '@material-ui/core/RadioGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Radio from '@material-ui/core/Radio'
-import FormLabel from '@material-ui/core/FormLabel'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Tooltip from '@material-ui/core/Tooltip'
-import Select from 'components/Select'
+import React, {useEffect, useState} from "react";
+import withStyles from "@material-ui/core/styles/withStyles";
+import createStyles from "@material-ui/core/styles/createStyles";
+import DatePicker from "components/DatePicker";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Radio from "@material-ui/core/Radio";
+import FormLabel from "@material-ui/core/FormLabel";
+import CustomSelect from "components/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import {auth} from 'endpoints'
 
-const styles = theme => createStyles({
 
+const styles = theme =>
+  createStyles({
     dobFieldInput: {
-        backgroundColor: `${theme.fields.inputFieldBackgroundColor}`,
-        borderRadius: '0px',
-        border: theme.fields.border,
-        transitionDuration: '0.25s',
-        height: theme.fields.height,
-        '&:hover': {
-            border: theme.fields.onHoverBorder,
-            backgroundColor: `${theme.fields.inputFieldBackgroundColor}`
-        }
+      backgroundColor: `${theme.fields.inputFieldBackgroundColor}`,
+      borderRadius: "0px",
+      border: theme.fields.border,
+      transitionDuration: "0.25s",
+      height: theme.fields.height,
+      "&:hover": {
+        border: theme.fields.onHoverBorder,
+        backgroundColor: `${theme.fields.inputFieldBackgroundColor}`
+      }
     },
 
     genderSelectContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        marginTop: 20
+      display: "flex",
+      flexDirection: "column"
     },
 
     genderRadioBtnContainer: {
-        justifyContent: 'space-around',
-        backgroundColor: `${theme.fields.inputFieldBackgroundColor}`,
-        border: theme.fields.border,
-        marginTop: 5,
-        height: theme.fields.height,
+      justifyContent: "space-around",
+      backgroundColor: `${theme.fields.inputFieldBackgroundColor}`,
+      border: theme.fields.border,
+      marginTop: theme.margin.labeltoInput,
+      height: theme.fields.height
     },
 
-    profilePhotoContainer: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: theme.margin.primary,
-
-        '&>.profilePhoto': {
-            height: 128,
-            width: 128,
-            overflow: 'hidden',
-            border: `5px solid ${theme.colors.onHoverBorderColor}`,
-            borderRadius: '50%',
-            cursor: 'pointer'
-        },
-
-        '&>div img': {
-            height: '100%'
-        }
-    },
-
-    profilePhotoDefaultIcon: {
-        color: theme.colors.secondaryTextColor
-    },
-
-    profilePhotoInput: {
-        height: 0,
-        width: 0,
-        display: 'none',
-    }
-
-})
-
-
+    container: props => ({
+      "&>div": {
+        marginBottom: theme.margin.primary
+      }
+    })
+  });
 
 function Step2(props) {
 
+<<<<<<< HEAD
     const { setValueOfField, classes } = props
     const profilePhotoInput = useRef(null)
     //mime types of accepted formats for profile photo
@@ -146,6 +119,57 @@ function Step2(props) {
 
         </>
     )
+=======
+  const { setValueOfField, classes } = props;
+
+  useEffect(()=>{
+    auth.getCountryList()
+  }, [])
+
+  return (
+    <div className={classes.container}>
+      <DatePicker
+        name="dob"
+        label="Date of Birth"
+        fullWidth
+        required
+        value={props.values.dob}
+        onChange={date => {
+          setValueOfField("dob", date);
+        }}
+        InputProps={{
+          disableUnderline: true,
+          classes: {
+            root: classes.dobFieldInput,
+            focused: classes.dobFieldInputFocused
+          }
+        }}
+      />
+
+      <div className={classes.genderSelectContainer}>
+        <FormLabel component="legend">Gender</FormLabel>
+        <RadioGroup
+          aria-label="gender"
+          name="gender"
+          value={props.values.gender}
+          onChange={props.handleChange}
+          row
+          classes={{ root: classes.genderRadioBtnContainer }}
+        >
+          <FormControlLabel value="female" control={<Radio />} label="Female" />
+          <FormControlLabel value="male" control={<Radio />} label="Male" />
+          <FormControlLabel value="other" control={<Radio />} label="Other" />
+        </RadioGroup>
+      </div>
+
+      <div className={classes.country}>
+        <CustomSelect label="Country">
+          <MenuItem></MenuItem>
+        </CustomSelect>
+      </div>
+    </div>
+  );
+>>>>>>> 74c83d172c14e801e5638972b28e8a9271ab5073
 }
 
-export default withStyles(styles)(Step2)
+export default withStyles(styles)(Step2);

@@ -5,7 +5,6 @@ import withStyles from '@material-ui/styles/withStyles'
 import Typography from '@material-ui/core/Typography'
 import styles from './styles'
 import { Link as RouterLink } from 'react-router-dom'
-import CustomTextField from 'components/CustomTextField'
 import { CustomCard, CustomCardHeader } from 'components/CustomCard'
 import * as yup from 'yup'
 import { Formik } from 'formik'
@@ -55,7 +54,10 @@ const signUpValidationSchema = yup.object().shape({
         .string('Please select a country'),
 
     state: yup
-        .string('Please select a state')
+        .string('Please select a state'),
+    
+    city: yup
+        .string('please select a city')
 
 })
 

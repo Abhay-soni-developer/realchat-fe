@@ -26,9 +26,9 @@ const style = theme => createStyles({
         fontSize: '1.2rem',
     },
 
-    container: {
-        marginTop: 20
-    }
+    container: props =>({
+        ...props.containerStyle
+    })
 })
 
 export default style

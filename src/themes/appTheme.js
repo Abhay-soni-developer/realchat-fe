@@ -5,7 +5,8 @@ const AppTheme = createMuiTheme({
 
     margin: {
         primary: 20,
-        secondary: 10
+        secondary: 10,
+        labeltoInput: 5
     },
 
     colors: {
@@ -25,7 +26,8 @@ const AppTheme = createMuiTheme({
         height: '62px',
         inputFieldBackgroundColor: '#fff',
         border: `1px solid #e9ddd0`,
-        onHoverBorder: `1px solid #ff3366`
+        onHoverBorder: `1px solid #ff3366`,
+        borderRadius: 0
     },
 
     navbar: {
