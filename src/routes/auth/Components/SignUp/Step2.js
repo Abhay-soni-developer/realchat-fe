@@ -1,16 +1,15 @@
-import React, { useRef } from "react";
+import React, {useEffect, useState} from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import createStyles from "@material-ui/core/styles/createStyles";
-import CustomTextField from "components/CustomTextField";
 import DatePicker from "components/DatePicker";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import FormLabel from "@material-ui/core/FormLabel";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Tooltip from "@material-ui/core/Tooltip";
-import Typography from "@material-ui/core/Typography";
-import LocationDailog from "./LocationDialog";
+import CustomSelect from "components/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import {auth} from 'endpoints'
+
 
 const styles = theme =>
   createStyles({
@@ -28,8 +27,7 @@ const styles = theme =>
 
     genderSelectContainer: {
       display: "flex",
-      flexDirection: "column",
-      marginTop: theme.margin.primary
+      flexDirection: "column"
     },
 
     genderRadioBtnContainer: {
@@ -40,104 +38,23 @@ const styles = theme =>
       height: theme.fields.height
     },
 
-    locationContainer: {
-      marginTop: theme.margin.primary
-    },
-
-    locationBox: {
-      height: theme.fields.height,
-      backgroundColor: theme.fields.inputFieldBackgroundColor,
-      borderRadius: theme.fields.borderRadius,
-      border: theme.fields.border,
-      paddingLeft: theme.margin.secondary,
-      display: "flex",
-      alignItems: "center"
-    },
-
-    profilePhotoContainer: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      marginBottom: theme.margin.primary,
-
-      "&>.profilePhoto": {
-        height: 128,
-        width: 128,
-        overflow: "hidden",
-        border: `5px solid ${theme.colors.onHoverBorderColor}`,
-        borderRadius: "50%",
-        cursor: "pointer"
-      },
-
-      "&>div img": {
-        height: "100%"
+    container: props => ({
+      "&>div": {
+        marginBottom: theme.margin.primary
       }
-    },
-
-    profilePhotoDefaultIcon: {
-      color: theme.colors.secondaryTextColor
-    },
-
-    profilePhotoInput: {
-      height: 0,
-      width: 0,
-      display: "none"
-    },
-
-    label: {
-      marginBottom: theme.margin.labeltoInput
-    }
+    })
   });
 
 function Step2(props) {
+
   const { setValueOfField, classes } = props;
-  const profilePhotoInput = useRef(null);
-  //mime types of accepted formats for profile photo
-  const allowedFormats = ["image/png", "image/jpeg"];
 
-  const onImageSelect = () => {
-    let file = profilePhotoInput.current.files[0];
-    let fileReader = new FileReader();
-    fileReader.addEventListener("load", e => {
-      props.setValueOfField("profilePhoto", e.currentTarget.result);
-    });
-    fileReader.readAsDataURL(file);
-  };
-
-  const openImageSelectDialog = () => {
-    profilePhotoInput.current.click();
-  };
-
-  const openLocationSelectDialog = () => {};
-  let progressCount = 0;
+  useEffect(()=>{
+    auth.getCountryList()
+  }, [])
 
   return (
-    <>
-      <div className={classes.profilePhotoContainer}>
-        <input
-          onChange={onImageSelect}
-          type="file"
-          className={classes.profilePhotoInput}
-          ref={profilePhotoInput}
-          accept={allowedFormats.join(" ")}
-          multiple={false}
-          name={"profilePhoto"}
-        />
-        <Tooltip title={"Click to upload your profile photo"} placement="top">
-          <div className={"profilePhoto"} onClick={openImageSelectDialog}>
-            {props.values.profilePhoto ? (
-              <img src={props.values.profilePhoto} />
-            ) : (
-              <FontAwesomeIcon
-                icon={["fas", "user-circle"]}
-                size={"8x"}
-                className={classes.profilePhotoDefaultIcon}
-              />
-            )}
-          </div>
-        </Tooltip>
-      </div>
-
+    <div className={classes.container}>
       <DatePicker
         name="dob"
         label="Date of Birth"
@@ -172,15 +89,12 @@ function Step2(props) {
         </RadioGroup>
       </div>
 
-      <div className={classes.locationContainer}>
-        <FormLabel classes={{root: classes.label}} component="legend">Location</FormLabel>
-        <div className={classes.locationBox} onClick={openLocationSelectDialog}>
-          <Typography>
-            {[props.values.city, props.values.state, props.values.country].filter(Boolean).join(', ')}
-          </Typography>
-        </div>
+      <div className={classes.country}>
+        <CustomSelect label="Country">
+          <MenuItem></MenuItem>
+        </CustomSelect>
       </div>
-    </>
+    </div>
   );
 }
 

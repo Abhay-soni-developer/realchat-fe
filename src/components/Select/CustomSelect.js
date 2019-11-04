@@ -23,8 +23,14 @@ const styles = theme =>
     }),
 
     notchedOutline: props => ({  
-      borderRadius: '0px',
+      borderRadius: theme.fields.borderRadius,
       border: theme.fields.border
+    }),
+
+    selectContainer: props => ({
+      display: 'flex',
+      flexDirection: 'column',
+      ...props.selectContainerStyle
     })
   });
 
@@ -32,8 +38,8 @@ function CustomSelect (props) {
   const { classes } = props;
 
   return (
-    <>
-      <FormLabel classes={{ root: classes.formLabel }} {...props.formLabelProps} required={props.required}>{props.label}</FormLabel>
+    <div className={classes.selectContainer}>
+      {props.label && <FormLabel classes={{ root: classes.formLabel }} {...props.formLabelProps} required={props.required}>{props.label}</FormLabel>}
       <TextField
         value={props.value}
         onChange={props.onChange}
@@ -45,7 +51,7 @@ function CustomSelect (props) {
       >
         {props.children}
       </TextField>
-    </>
+    </div>
   );
 }
 
