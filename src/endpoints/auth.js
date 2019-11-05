@@ -1,9 +1,9 @@
-import axios from 'utils/interceptor'
+import axios from 'axios'
 
 const getCountryList = function () {
-    axios.get({
-        URL
-    })
+    return axios.get('/countryList')
+    .then(res => {console.log(res)})
+    .catch(err => {console.log(err)})
 }
 
 
